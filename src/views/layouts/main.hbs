@@ -11,18 +11,36 @@
     <link rel="stylesheet" href="https://pro.fontawsome.com/releases/v5.10.0/css/all.css">
 </head>
 <body class="bg-gray-200">
-    <nav class="flex py-5 bg-blue-500 text-white px-24">
+
+    <nav class="flex py-6 bg-blue-500 text-white px-24">
         <div class="w-1/2 px-12 mr-auto">
             <h1 class="text-2x1 font-bold">My Application</h1>
         </div>
+
         <ul class="w-1/2 px-12 ml-auto flex justify-end pt-1">
-        <li class="nav-item px-4">
+        {{#if name}}
+
+
+            <li class="nav-item px-4">
+                <p class="font-sembold">
+                    {{name}}
+                </p>
+            </li>
+
+            <li class="nav-item px-4">
+            <a href="/logout" class="nav-link font-semibold bg-red-500 text-white  hover:bg-red-700 py-3 px-4 rounded-md">logout</a>
+        </li>
+
+
+        {{else}}
+                    <li class="nav-item px-4">
             <a href="/login" class="nav-link font-semibold border-2 border-white hover:bg-white hover:text-green-700 py-3 px-4 rounded-md">Login</a>
         </li>
 
         <li class="nav-item px-4">
             <a href="/register" class="nav-link font-semibold border-2 border-white hover:bg-white hover:text-green-700 py-3 px-4 rounded-md">Register</a>
         </li>
+        {{/if}}
         </ul>
     </nav>
     

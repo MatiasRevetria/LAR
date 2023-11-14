@@ -16,7 +16,7 @@ function auth(req,res){
         conn.query('SELECT * FROM users where email = ?',[data.email],(err,userdata)=>{
             if(userdata.length > 0){
                 userdata.forEach(element => {
-                bcrypt.compare(data.password, userdata.password, (err,isMatch)=>{
+                bcrypt.compare(data.password, element.password, (err,isMatch)=>{
                         if(isMatch){
                             req.session.loggedin = true;
                             req.session.name = element.name;
@@ -24,6 +24,7 @@ function auth(req,res){
                             res.redirect('/');
 
                         }else{
+                            
                             res.render('login/index',{error:'Error: incorrect password !'});
                         }
                     });
@@ -34,6 +35,13 @@ function auth(req,res){
         }
     )}
 )}
+
+function logout(req,res){
+    if(req.session.loggedin == true){
+        req.session.destroy();
+}
+        res.redirect('/login');
+}
 
 function register(req,res){
     res.render('login/register')
@@ -68,4 +76,5 @@ module.exports = {
     register: register,
     storeUser: storeUser,
     auth: auth,
+    logout: logout,
 }
