@@ -62,6 +62,9 @@ function storeUser(req,res){
                
                    req.getConnection((err,conn)=>{
                        conn.query('INSERT INTO users SET ?',[data],(err,rows)=>{
+
+                           req.session.loggedin = true;
+                           req.session.name = data.name;
                            res.redirect('/')
                        });
                      });      
