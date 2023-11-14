@@ -2,11 +2,7 @@ const bcrypt = require('bcrypt');
 
 
 function login(req,res){
-    if(req.session.loggedin != true){
-        res.render('login/register')
-    }else{
-        res.redirect('/');
-    }
+    res.render('login/index')
 }
 
 function auth(req,res){
